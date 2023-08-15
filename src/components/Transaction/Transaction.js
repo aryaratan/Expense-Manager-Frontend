@@ -16,7 +16,7 @@ const Transaction =  ({id, expense, onEdit}) => {
       .then(response => response.json())
       .then(apiData => {
 
-        console.log(apiData, "api");
+        // console.log(apiData, "api");
         onEdit(apiData.decs, apiData.amt, id);
       })
       .catch(error => {

@@ -19,9 +19,10 @@ function App() {
   const [expense, setExpense] = useState(0);
   const [decs, setDecs] = useState('');
   const [amt, setAmt] = useState('');
+  const [id, setId] = useState('');
 
   const preFtechExpenseLists = () => {
-    fetch("http://localhost:8000/")
+    fetch("http://localhost:8000")
       .then(response => response.json())
       .then(apiData => {
         setExpenseLists(apiData.expenses);
@@ -34,22 +35,23 @@ function App() {
       });
   }
 
-  // useEffect(() => {
-  //   
-  // }, [ExpenseLists, decs, amt]); 
-  preFtechExpenseLists();
+  useEffect(() => {
+    preFtechExpenseLists();
+  }, [ExpenseLists, decs, amt, id]); 
+ 
 
   const onEdit = (decs, amt, id) => {
-    console.log(decs, amt, 'app');
+    // console.log(decs, amt, 'app');
     setDecs(decs);
     setAmt(amt);
+    setId(id);
   }
   return (
     <>
       <ToastContainer />
       <h2 className="mainHeading">Expense Tracker</h2>
       <div className="App">
-        <ExpenseForm editDec={decs} editAmt={amt}/>
+        <ExpenseForm editDec={decs} editAmt={amt} id={id}/>
         <div className="expenseContainer">
           <ExpenseInfo income={income} expense={expense} />
           <ExpenseList ExpenseList={ExpenseLists} onEdit={onEdit}/>

@@ -9,8 +9,8 @@ const ExpenseForm = ({editDec, editAmt, id}) => {
   
   const [edit, setEdit] = useState(false);
   useEffect(() => {
-    console.log(editDec, editAmt, 'form');
-    if(editDec && editAmt){
+    // console.log(editDec, editAmt, 'form');
+    if(editDec || editAmt){
       
       setDescription(editDec);
       setAmount(editAmt);
@@ -19,10 +19,11 @@ const ExpenseForm = ({editDec, editAmt, id}) => {
       editAmt = '';
       setEdit(true);
     }
-  },[editDec, editAmt])
+  },[editDec, editAmt,id])
 
   const apiCall = async () => {
     if(edit){
+      // console.log('idform', id);
       const response = await fetch(`http://localhost:8000/update-expense/?id=${id}`, {
         method:'PUT',
         body:JSON.stringify({description, amount}),
@@ -30,6 +31,9 @@ const ExpenseForm = ({editDec, editAmt, id}) => {
           'Content-type':'application/json'
         }   
       });
+      toast.success('Entry edited succesfully');
+      setEdit(false);
+      return;
     }
     const response = await fetch("http://localhost:8000/add-expense", {
       method:'POST',
@@ -38,6 +42,7 @@ const ExpenseForm = ({editDec, editAmt, id}) => {
         'Content-type':'application/json'
       }   
     });
+    toast.success('Entry added succesfully');
   }
 
 
@@ -47,7 +52,7 @@ const ExpenseForm = ({editDec, editAmt, id}) => {
     apiCall();
     setDescription('');
     setAmount('');
-    toast.success('Entry added succesfully');
+    
   }
 
 
