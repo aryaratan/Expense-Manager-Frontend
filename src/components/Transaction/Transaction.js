@@ -3,8 +3,9 @@ import styles from "./Transaction.module.css";
 import EditImage from "../../images/edit.png";
 import DeleteImage from "../../images/trash-bin.png";
 import {toast} from 'react-toastify';
-const Transaction =  ({id, expense, onEdit}) => {
-  
+const Transaction =  ({index,id, expense, onEdit}) => {
+  const [currentHoverIndex, setCurrentHoverIndex] = useState(null);
+
   const handleDelete = async () => {
     const response = await fetch(`http://localhost:8000/delete-expense/?id=${id}`,{
       method:'DELETE'
@@ -28,27 +29,27 @@ const Transaction =  ({id, expense, onEdit}) => {
     <li
       id={`${id}`}
       className={`${styles.transaction} ${
-        styles.profit 
+        expense.amount > 0 ? styles.profit : styles.loss
       }`}
-      // onMouseOver={() => {
-      //   setCurrentHoverIndex(0);
-      // }}
-      // onMouseLeave={() => {
-      //   setCurrentHoverIndex(null);
-      // }}
+      onMouseOver={() => {
+        setCurrentHoverIndex(index);
+      }}
+      onMouseLeave={() => {
+        setCurrentHoverIndex(null);
+      }}
     >
       <div>{expense.description}</div>
       <div className={styles.transactionOptions}>
         <div
-          className={`${styles.amount} ${
-            styles.movePrice
-          }`}
+         className={`${styles.amount} ${
+          currentHoverIndex === index && styles.movePrice
+        }`}
         >
           {expense.amount}
         </div>
         <div
           className={`${styles.btnContainer} ${
-            styles.active
+            currentHoverIndex === index && styles.active
           }`}
         >
           <div

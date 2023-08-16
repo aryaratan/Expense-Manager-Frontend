@@ -1,3 +1,4 @@
+
 .transaction {
   width: 100%;
   box-shadow: var(--box-shadow);
@@ -61,3 +62,4 @@
   cursor: pointer;
   transform: scale(1.15);
 }
+

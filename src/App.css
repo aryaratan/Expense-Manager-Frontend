@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 
 :root {
@@ -16,8 +17,10 @@ h4 {
 }
 
 .mainHeading {
-  text-align: center;
-  margin-top: 2rem;
+  /* text-align: center; */
+  position: fixed;
+  top:3rem;
+  left:45%;
 }
 
 .App {
@@ -32,6 +35,7 @@ h4 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 3rem auto;
+  margin-left: 50%;
+  margin-top: 8rem;
   width: 350px;
 }

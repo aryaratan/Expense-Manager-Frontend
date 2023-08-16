@@ -14,6 +14,7 @@ const ExpenseList = ({ExpenseList, onEdit}) => {
             <Transaction
               id={expense._id}
               key={i}
+              index={i}
               expense={expense}
               onEdit={onEdit}
             />
