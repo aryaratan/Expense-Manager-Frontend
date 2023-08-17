@@ -1,20 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ExpenseForm.module.css";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const ExpenseForm = ({editDec, editAmt, id}) => {
-  // console.log(editDec, editAmt);
+
   const [description , setDescription] = useState('');
   const [amount , setAmount] = useState('');
   
   const [edit, setEdit] = useState(false);
   useEffect(() => {
-    // console.log(editDec, editAmt, 'form');
+ 
     if(editDec || editAmt){
       
       setDescription(editDec);
       setAmount(editAmt);
-      // apiCall();
       editDec ='';
       editAmt = '';
       setEdit(true);
@@ -23,7 +22,6 @@ const ExpenseForm = ({editDec, editAmt, id}) => {
 
   const apiCall = async () => {
     if(edit){
-      // console.log('idform', id);
       const response = await fetch(`http://localhost:8000/update-expense/?id=${id}`, {
         method:'PUT',
         body:JSON.stringify({description, amount}),
@@ -59,7 +57,7 @@ const ExpenseForm = ({editDec, editAmt, id}) => {
   return (
     <form className={styles.form} onSubmit={onSubmitHandler}>
       <h3>
-        {/* {expenseToUpdate ? "Edit " : "Add new "} */}
+        {edit ? "Edit " : "Add new "}
       transaction</h3>
       <label htmlFor="expenseText">Text</label>
       <input
@@ -88,7 +86,6 @@ const ExpenseForm = ({editDec, editAmt, id}) => {
       />
       <button className={styles.submitBtn}>
         {edit ? "Edit " : "Add "} 
-        {/* Transaction */}
       </button>
     </form>
   );

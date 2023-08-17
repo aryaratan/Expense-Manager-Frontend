@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-// components imports
+
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
 import ExpenseInfo from "./components/ExpenseInfo/ExpenseInfo";
 import ExpenseList from "./components/ExpenseList/ExpenseList";
 
-// react toasts
-import { toast, ToastContainer } from "react-toastify";
+
+import {  ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -41,7 +41,6 @@ function App() {
  
 
   const onEdit = (decs, amt, id) => {
-    // console.log(decs, amt, 'app');
     setDecs(decs);
     setAmt(amt);
     setId(id);

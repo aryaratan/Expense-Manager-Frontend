@@ -16,14 +16,11 @@ const Transaction =  ({index,id, expense, onEdit}) => {
     fetch(`http://localhost:8000/edit-expense/?id=${id}`)
       .then(response => response.json())
       .then(apiData => {
-
-        // console.log(apiData, "api");
         onEdit(apiData.decs, apiData.amt, id);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-    // onEdit()
   }
   return (
     <li
