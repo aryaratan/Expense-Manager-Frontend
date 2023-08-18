@@ -7,13 +7,13 @@ const Transaction =  ({index,id, expense, onEdit}) => {
   const [currentHoverIndex, setCurrentHoverIndex] = useState(null);
 
   const handleDelete = async () => {
-    const response = await fetch(`http://localhost:8000/delete-expense/?id=${id}`,{
+    const response = await fetch(`https://spendlens-backend.onrender.com/delete-expense/?id=${id}`,{
       method:'DELETE'
     });
     toast.success('Entry deleted succesfully');
   }
   const handleEdit = async () => {
-    fetch(`http://localhost:8000/edit-expense/?id=${id}`)
+    fetch(`https://spendlens-backend.onrender.com/edit-expense/?id=${id}`)
       .then(response => response.json())
       .then(apiData => {
         onEdit(apiData.decs, apiData.amt, id);

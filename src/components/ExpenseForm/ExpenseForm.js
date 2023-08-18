@@ -22,7 +22,7 @@ const ExpenseForm = ({editDec, editAmt, id}) => {
 
   const apiCall = async () => {
     if(edit){
-      const response = await fetch(`http://localhost:8000/update-expense/?id=${id}`, {
+      const response = await fetch(`https://spendlens-backend.onrender.com/update-expense/?id=${id}`, {
         method:'PUT',
         body:JSON.stringify({description, amount}),
         headers:{
@@ -33,7 +33,8 @@ const ExpenseForm = ({editDec, editAmt, id}) => {
       setEdit(false);
       return;
     }
-    const response = await fetch("http://localhost:8000/add-expense", {
+
+    const response = await fetch("https://spendlens-backend.onrender.com/add-expense", {
       method:'POST',
       body:JSON.stringify({description, amount}),
       headers:{

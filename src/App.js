@@ -22,7 +22,7 @@ function App() {
   const [id, setId] = useState('');
 
   const preFtechExpenseLists = () => {
-    fetch("http://localhost:8000")
+    fetch("https://spendlens-backend.onrender.com/")
       .then(response => response.json())
       .then(apiData => {
         setExpenseLists(apiData.expenses);
